@@ -698,14 +698,11 @@ body._lock {
   transform: rotate(180deg);
 }
 
-.homepage-filter__wrapper {
-  overflow: hidden;
-}
-
 .homepage-filter__body {
   display: flex;
   align-items: center;
   gap: 12px;
+  transition: all 0.5s ease;
 }
 
 .homepage-filter__select:not(:last-child) {
@@ -5227,8 +5224,8 @@ body._lock {
   }
 
   .homepage-filter {
-    display: grid;
-    grid-template-rows: auto 0fr;
+    display: flex;
+    flex-direction: column;
     gap: 0px;
     transition: all 0.5s ease;
   }
@@ -5246,11 +5243,15 @@ body._lock {
     display: flex;
     align-items: center;
     gap: 6px;
+    width: -moz-fit-content;
+    width: fit-content;
   }
 
   .homepage-filter__body {
     flex-direction: column;
     align-items: unset;
+    max-height: 0;
+    overflow: hidden;
   }
 
   .homepage-panel {
