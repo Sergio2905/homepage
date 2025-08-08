@@ -702,7 +702,6 @@ body._lock {
   display: flex;
   align-items: center;
   gap: 12px;
-  overflow: hidden;
 }
 
 .homepage-filter__select:not(:last-child) {
