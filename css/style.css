@@ -4844,7 +4844,7 @@ body._lock {
   transform: translate(25%, -50%);
   width: 16px;
   height: 16px;
-  background: url("../../img/icons/icons.svg#arrow_home");
+  background: url("../img/icons/icons.svg#arrow_home");
 }
 
 .homepage-thanks-all__details {
