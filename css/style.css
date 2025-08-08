@@ -698,6 +698,10 @@ body._lock {
   transform: rotate(180deg);
 }
 
+.homepage-filter__wrapper {
+  overflow: hidden;
+}
+
 .homepage-filter__body {
   display: flex;
   align-items: center;
