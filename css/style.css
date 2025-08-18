@@ -1475,6 +1475,8 @@ body._lock {
   padding: 6px 10px 6px 30px;
   margin-top: 12px;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .homepage-submenu__search::before {
@@ -1489,6 +1491,7 @@ body._lock {
 }
 
 .homepage-submenu__search input {
+  flex: 1 1 auto;
   width: 100%;
   min-width: 0;
   font-size: 0.875rem;
@@ -1504,6 +1507,28 @@ body._lock {
   color: #707070;
 }
 
+.homepage-submenu__clear {
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+
+.homepage-submenu__clear.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.homepage-submenu__clear svg {
+  width: 100%;
+  height: 100%;
+  fill: var(--black);
+}
+
 .homepage-submenu__list {
   list-style: none;
   margin-top: 12px;
@@ -1511,14 +1536,25 @@ body._lock {
 
 .homepage-submenu__item {
   display: grid;
-  grid-template-columns: auto 32px;
+  grid-template-columns: 1fr 32px;
   -moz-column-gap: 12px;
        column-gap: 12px;
   justify-content: space-between;
   align-items: center;
-  padding: 2px 2px 2px 10px;
+  padding: 2px 0 2px 10px;
+  transition: all 0.5s ease;
+  position: relative;
+}
+
+.homepage-submenu__item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: -5px;
+  height: 42px;
   border-radius: 4px;
-  margin-left: -10px;
+  background: transparent;
   transition: all 0.5s ease;
 }
 
@@ -1526,28 +1562,20 @@ body._lock {
   display: none;
 }
 
-.homepage-submenu__item.active {
+.homepage-submenu__item.active::before {
   background: #E6EDFE !important;
 }
 
-.homepage-submenu__item.active .homepage-submenu__link {
+.homepage-submenu__item.active > .homepage-submenu__link {
   color: var(--blue);
 }
 
-.homepage-submenu__item.active .homepage-submenu__level2 {
-  grid-template-rows: 1fr;
+.homepage-submenu__item.disabled::before {
+  background: transparent !important;
 }
 
-.homepage-submenu__item.active .homepage-submenu__level2 .homepage-submenu__link {
+.homepage-submenu__item.disabled > .homepage-submenu__link {
   color: var(--black);
-}
-
-.homepage-submenu__item.active .homepage-submenu__btn {
-  background: #CCDAFD;
-}
-
-.homepage-submenu__item.active .homepage-submenu__btn svg {
-  transform: rotate(0);
 }
 
 .homepage-submenu__link {
@@ -1558,6 +1586,12 @@ body._lock {
   display: flex;
   align-items: center;
   transition: all 0.5s ease;
+  position: relative;
+}
+
+.homepage-submenu__link.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .homepage-submenu__btn {
@@ -1569,6 +1603,11 @@ body._lock {
   justify-content: center;
   background: #F5F5F5;
   border-radius: 8px;
+  position: relative;
+}
+
+.homepage-submenu__btn.active svg {
+  transform: rotate(0);
 }
 
 .homepage-submenu__btn svg {
@@ -1579,18 +1618,26 @@ body._lock {
   transition: all 0.5s ease;
 }
 
+.homepage-submenu__btn.disabled {
+  display: none;
+}
+
 .homepage-submenu__level2 {
   grid-column: span 2;
   display: grid;
   grid-template-rows: 0fr;
   transition: all 0.5s ease;
-  background: var(--white);
-  margin: 0 -2px -2px -10px;
+  position: relative;
+}
+
+.homepage-submenu__level2.active {
+  grid-template-rows: 1fr;
 }
 
 .homepage-submenu__level2 .homepage-submenu__list {
   grid-column: span 2;
-  margin-top: 0;
+  margin: 0 -10px 0 -10px;
+  padding-right: 10px;
   overflow: hidden;
 }
 
@@ -5397,7 +5444,7 @@ body._lock {
     fill: var(--blue);
   }
 
-  .homepage-submenu__item:hover {
+  .homepage-submenu__item:hover::before {
     background: #F0F0F0;
   }
 
